@@ -12,7 +12,7 @@ function App() {
   return (
     <ApolloProvider client={AppolloClient}>
       <Router history={browserHistory}>
-        <Routes/>
+        <Routes />
       </Router>
     </ApolloProvider>
   )

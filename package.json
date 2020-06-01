@@ -3,6 +3,14 @@
   "description": "taxi investor's cabinet",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "pretty": "prettier --check 'src/**/*.{js,jsx}'",
+    "pretty:fix": "prettier --write 'src/**/*.{js,jsx}'"
+  },
   "dependencies": {
     "@ant-design/icons": "^4.1.0",
     "@apollo/react-hooks": "^3.1.5",
@@ -25,12 +33,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
   },
-  "scripts": {
-    "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -38,5 +40,10 @@
     "last 1 chrome version",
     "last 1 firefox version",
     "last 1 safari version"
-  ]
+  ],
+  "devDependencies": {
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "prettier": "^2.0.5"
+  }
 }

@@ -4,7 +4,7 @@ import { onError } from 'apollo-link-error'
 import { createHttpLink } from 'apollo-link-http'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
-const httpLink = createHttpLink({ uri: 'http://localhost:5000/api' })
+const httpLink = createHttpLink({ uri: 'http://localhost:5085/api' })
 const authLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem('token')
   if (token) {
@@ -17,7 +17,7 @@ const authLink = new ApolloLink((operation, forward) => {
   return forward(operation)
 })
 
-const errorLink = onError(({ response, operation,  graphQLErrors, networkError }) => {
+const errorLink = onError(({ response, operation, graphQLErrors, networkError }) => {
   console.log('response> ', response)
   console.log('operation> ', operation)
   // if (graphQLErrors) {
@@ -34,7 +34,7 @@ const errorLink = onError(({ response, operation,  graphQLErrors, networkError }
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: ApolloLink.from([ errorLink, authLink, httpLink ]),
+  link: ApolloLink.from([errorLink, authLink, httpLink]),
 })
 
 export default client

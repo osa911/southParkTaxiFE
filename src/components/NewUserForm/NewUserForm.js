@@ -21,15 +21,19 @@ const NewUserForm = ({ onSave }) => {
     <Form {...layout} form={form} onFinish={onSave}>
       <Divider>South Park Taxi</Divider>
       <Form.Item name="name" label="Client name" rules={[requiredField('Client name')]}>
-        <Input/>
+        <Input />
       </Form.Item>
       <Form.Item name="password" label="Password" rules={[requiredField('Password')]}>
-        <Input.Password/>
+        <Input.Password />
       </Form.Item>
-      <Form.Item name="email" label="E-mail" rules={[{ ...requiredField('E-mail'), type: 'email' }]}>
-        <Input/>
+      <Form.Item
+        name="email"
+        label="E-mail"
+        rules={[{ ...requiredField('E-mail'), type: 'email' }]}
+      >
+        <Input />
       </Form.Item>
-      <Form.Item {...tailLayout} >
+      <Form.Item {...tailLayout}>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>

@@ -1,41 +1,30 @@
-import React, { useState } from "react"
-import { Layout as LayoutContent, Breadcrumb, Button } from 'antd'
-import { MenuOutlined } from '@ant-design/icons';
-// import Sidebar from 'components/Sidebar'
-import { Link } from 'react-router-dom'
-
+import React from 'react'
+import { Button, Layout } from 'antd'
+import { useHistory } from 'react-router-dom'
 import styles from './Main.module.scss'
-const { Header, Content } = LayoutContent
+import Sidebar from '../../components/Sidebar/Sidebar'
 
-const MainLayout = ({ children }) => {
-  const [collapsed, setCollapsed] = useState(false)
+const { Header, Footer } = Layout
 
-  const onCollapse = () => {
-    setCollapsed((collapsed) => !collapsed)
+const StandardLayout = ({ children }) => {
+  const { push } = useHistory()
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    push('/signIn')
   }
+
   return (
-    <>
-      <LayoutContent style={{ minHeight: '100vh' }}>
-        <Header className={styles.header}>
-          <Button className={styles.button} onClick={onCollapse}><MenuOutlined /></Button>
-          <Link to="/">
-            <span className={styles.reevooLogo}>REEVOO</span>
-          </Link>
+    <Layout className={styles.layout}>
+      <Sidebar />
+      <Layout className={styles.container}>
+        <Header className={styles.header} >
+          <Button type="link" onClick={handleLogOut}>Logout</Button>
         </Header>
-        <LayoutContent className={styles.container}>
-          {/*<Sidebar collapsed={collapsed}/>*/}
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>Breadcrumb functionality</Breadcrumb.Item>
-              <Breadcrumb.Item>Will be added later</Breadcrumb.Item>
-            </Breadcrumb>
-            <div className={styles.content}>{children}</div>
-          </Content>
-        </LayoutContent>
-      </LayoutContent>
-    </>
+        {children}
+        <Footer className={styles.footer}>SouthPark ©2020 Created by Yevhenii Osadchyi</Footer>
+      </Layout>
+    </Layout>
   )
 }
 
-export default MainLayout
+export default StandardLayout

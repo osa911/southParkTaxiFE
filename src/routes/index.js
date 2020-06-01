@@ -4,21 +4,24 @@ import { Redirect, Switch } from 'react-router-dom'
 import Home from '../containers/Home'
 import SignIn from '../containers/SignIn/SignIn'
 import Page404 from '../containers/Page404'
-// import SignOut from '../modules/Auth/containers/SignOut'
-// import Clients from '../modules/Admin/containers/Clients'
-import Main from '../layouts/Main'
-import Mini from '../layouts/Minimal'
+import Minimal from '../layouts/Minimal'
+import Standard from '../layouts/Standard'
+import StandardMini from '../layouts/StandardMini'
 import RouteWithLayout from './RouteWithLayout'
+import Tracker from '../containers/Tracker'
+import AddNewUser from '../containers/AddNewUser'
+import UsersList from '../containers/UsersList'
 
 export default function Routes() {
   return (
     <Switch>
-      <RouteWithLayout exact layout={Main} component={Home} path="/"/>
-      {/*<RouteWithLayout exact layout={Main} component={Clients} path="/clients" />*/}
-      <RouteWithLayout exact layout={Mini} component={SignIn} path="/signIn" notPrivate/>
-      {/*<RouteWithLayout exact layout={Mini} component={SignOut} path="/signOut" notPrivate />*/}
-      <RouteWithLayout exact layout={Mini} component={Page404} path="/page-not-found" notPrivate/>
-      <Redirect to="/page-not-found"/>
+      <RouteWithLayout exact layout={Standard} component={Home} path="/" />
+      <RouteWithLayout exact layout={StandardMini} component={Tracker} path="/tracker" />
+      <RouteWithLayout exact layout={Standard} component={AddNewUser} path="/add-new-user" />
+      <RouteWithLayout exact layout={Standard} component={UsersList} path="/users-list" />
+      <RouteWithLayout exact layout={Minimal} component={SignIn} path="/signIn" notPrivate />
+      <RouteWithLayout exact layout={Minimal} component={Page404} path="/page-not-found" notPrivate />
+      <Redirect to="/page-not-found" />
     </Switch>
   )
 }

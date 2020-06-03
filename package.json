@@ -8,6 +8,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
+    "copy_redirect": "cpx \"_redirects\" \"build\"",
     "pretty": "prettier --check 'src/**/*.{js,jsx}'",
     "pretty:fix": "prettier --write 'src/**/*.{js,jsx}'"
   },
@@ -24,6 +25,7 @@
     "apollo-client": "^2.6.10",
     "apollo-link": "^1.2.14",
     "apollo-link-http": "^1.5.17",
+    "cpx": "^1.5.0",
     "craco-less": "^1.16.0",
     "graphql": "^15.0.0",
     "history": "^4.10.1",

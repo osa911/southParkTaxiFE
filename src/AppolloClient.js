@@ -1,10 +1,10 @@
-import { ApolloClient } from 'apollo-client'
-import { ApolloLink } from 'apollo-link'
-import { onError } from 'apollo-link-error'
-import { createHttpLink } from 'apollo-link-http'
-import { InMemoryCache } from 'apollo-cache-inmemory'
+import { ApolloClient } from "apollo-client";
+import { ApolloLink } from "apollo-link";
+import { onError } from "apollo-link-error";
+import { createHttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
 
-const httpLink = createHttpLink({ uri: 'http://localhost:5085/api' })
+const httpLink = createHttpLink({ uri: process.env.BE_HOST })
 const authLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem('token')
   if (token) {

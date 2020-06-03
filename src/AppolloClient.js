@@ -4,7 +4,7 @@ import { onError } from "apollo-link-error";
 import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
-const uri = process.env.hasOwnProperty('API_SERVER_HOST') ? process.env.API_SERVER_HOST : '/api'
+const uri = process.env.hasOwnProperty('REACT_APP_API') ? process.env.REACT_APP_API : '/api'
 const httpLink = createHttpLink({ uri, credentials: "include" })
 const authLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem('token')

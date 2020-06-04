@@ -1,14 +1,17 @@
 import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { onError } from "apollo-link-error";
-import { createHttpLink } from "apollo-link-http";
+import { createUploadLink } from "apollo-upload-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
-const uri = process.env.hasOwnProperty('REACT_APP_API') ? process.env.REACT_APP_API : '/api'
-const httpLink = createHttpLink({ uri, credentials: "include" })
+const uri = process.env.REACT_APP_API
+const credentials = (process.env.NODE_ENV === 'production' ? { credentials: 'include' } : {})
+const httpLink = createUploadLink({
+  uri,
+  ...credentials,
+})
 const authLink = new ApolloLink((operation, forward) => {
   const token = localStorage.getItem('token')
-  console.log('uri> ', uri)
   if (token) {
     operation.setContext({
       headers: {

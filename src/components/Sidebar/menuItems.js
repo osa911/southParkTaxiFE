@@ -1,6 +1,6 @@
-import React from 'react'
-import { HomeFilled, UnorderedListOutlined, UserAddOutlined, UserOutlined } from '@ant-design/icons'
-import { GpsIcon } from '../Icons'
+import React from "react";
+import { HomeFilled, PlusOutlined, UnorderedListOutlined, UploadOutlined } from "@ant-design/icons";
+import { AdminIcon, GpsIcon } from "../Icons";
 
 export const menuItems = [
   {
@@ -16,22 +16,28 @@ export const menuItems = [
     name: 'Tracker',
   },
   {
-    key: 'users',
-    icon: <UserOutlined />,
+    key: 'upload',
+    linkTo: '/upload',
+    icon: <UploadOutlined />,
+    name: 'Upload report file',
+  },
+  {
+    key: 'adminPanel',
+    icon: <AdminIcon />,
     role: 'ADMIN',
-    name: 'Users',
+    name: 'Admin panel',
     subMenu: [
       {
-        key: 'addNewUser',
-        linkTo: '/add-new-user',
-        name: 'Add new user',
-        icon: <UserAddOutlined />,
+        key: 'create',
+        linkTo: '/create',
+        name: 'Create new',
+        icon: <PlusOutlined />,
       },
       {
-        key: 'usersList',
-        linkTo: '/users-list',
-        name: 'Users List',
-        icon: <UnorderedListOutlined />
+        key: 'list',
+        linkTo: '/list',
+        name: 'List',
+        icon: <UnorderedListOutlined />,
       },
     ],
   },

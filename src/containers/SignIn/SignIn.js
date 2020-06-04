@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { Alert, Button, Divider, Form, Input, Spin } from 'antd'
-import { useHistory } from 'react-router-dom'
-import { useMutation } from '@apollo/react-hooks'
-import { LOGIN_USER } from './qraphQL/mutation'
-import styles from './SignIn.module.scss'
-import { requiredField } from '../../utils/FormHelpers'
+import React, { useEffect } from "react";
+import { Alert, Button, Divider, Form, Input, Spin } from "antd";
+import { useHistory } from "react-router-dom";
+import { useMutation } from "@apollo/react-hooks";
+import { LOGIN_USER } from "./gql/mutation";
+import styles from "./SignIn.module.scss";
+import { requiredField } from "../../utils/FormHelpers";
 
 const layout = {
   labelCol: { span: 24 },
@@ -35,12 +35,7 @@ const SignIn = () => {
     <Spin tip="Loading" spinning={loading}>
       {called && error && (
         <div className={styles.error}>
-          <Alert
-            message="Error"
-            description={error.message}
-            type="error"
-            closable
-          />
+          <Alert message="Error" description={error.message} type="error" closable />
         </div>
       )}
       <Form {...layout} form={form} className={styles.container} onFinish={onFinish}>
@@ -52,11 +47,7 @@ const SignIn = () => {
         >
           <Input />
         </Form.Item>
-        <Form.Item
-          name="password"
-          label="Password"
-          rules={[requiredField('Password')]}
-        >
+        <Form.Item name="password" label="Password" rules={[requiredField('Password')]}>
           <Input.Password />
         </Form.Item>
         <Form.Item {...tailLayout}>

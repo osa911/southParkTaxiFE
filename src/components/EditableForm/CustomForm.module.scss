@@ -1,0 +1,26 @@
+.formWrapper {
+  width: 100%;
+}
+
+.formTitle {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.button {
+  min-width: 100px;
+  margin-left: 20px;
+}
+
+.buttons {
+  justify-content: flex-end;
+  text-align: right;
+  transition: 100ms;
+}
+
+.invisible {
+  opacity: 0;
+  visibility: hidden;
+}

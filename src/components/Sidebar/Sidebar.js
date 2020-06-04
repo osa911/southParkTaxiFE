@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Layout, Menu } from 'antd'
-import styles from './Sidebar.module.scss'
-import { menuItems } from './menuItems'
+import React, { useMemo } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Layout, Menu } from "antd";
+import styles from "./Sidebar.module.scss";
+import { menuItems } from "./menuItems";
 
 const { Sider } = Layout
 const { Item: MenuItem, SubMenu } = Menu
@@ -45,7 +45,7 @@ const Sidebar = () => {
   return (
     <Sider className={styles.sidebar}>
       <div className={styles.logo} />
-      <Menu theme="dark" mode="inline" selectedKeys={selectedMenuItemKey} >
+      <Menu theme="dark" mode="inline" defaultOpenKeys={['adminPanel']} selectedKeys={selectedMenuItemKey} >
         {menuItems.map(createMenuItem)}
       </Menu>
     </Sider>

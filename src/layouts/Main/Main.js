@@ -1,14 +1,15 @@
-import React from 'react'
-import { Button, Layout } from 'antd'
-import { useHistory } from 'react-router-dom'
-import styles from './Main.module.scss'
-import Sidebar from '../../components/Sidebar/Sidebar'
+import React from "react";
+import { Button, Layout } from "antd";
+import { useHistory } from "react-router-dom";
+import styles from "./Main.module.scss";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const { Header, Footer } = Layout
 
 const StandardLayout = ({ children }) => {
   const { push } = useHistory()
   const handleLogOut = () => {
+    localStorage.removeItem('userInfo')
     localStorage.removeItem('token')
     push('/signIn')
   }

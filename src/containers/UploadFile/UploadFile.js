@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Col, Divider, Row, Tabs, Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import { useMutation } from "@apollo/react-hooks";
-import { UPLOAD_FILE_STREAM } from "./gql/mutation";
+import { UPLOAD_FILE_STREAM } from "../../gql";
 
 const { TabPane } = Tabs
 
@@ -78,7 +78,7 @@ const UploadFile = () => {
                           </>
                         ))}
                       </Row>
-                      <Divider style={{ margin: '3px 0' }}/>
+                      <Divider style={{ margin: '3px 0' }} />
                     </>
                   ))}
                 </TabPane>

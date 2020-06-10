@@ -4,7 +4,8 @@ import { useMutation } from "@apollo/react-hooks";
 
 import CustomForm from "../../components/EditableForm";
 import { requiredField } from "../../utils/FormHelpers";
-import { CREATE_USER } from "./gql/mutation";
+import { CREATE_USER } from "../../gql";
+import { ADMIN_ROLE, INVESTOR_ROLE } from "../../constants";
 
 const AddNewUser = () => {
   const [createNewUser, { data = {}, loading, called, client, error }] = useMutation(CREATE_USER)
@@ -67,9 +68,16 @@ const AddNewUser = () => {
             </Form.Item>
             <Form.Item name="role" label="Role" hasFeedback rules={[{ ...requiredField('Role') }]}>
               <Select placeholder="Select a role">
-                <Select.Option value="INVESTOR">Investor</Select.Option>
-                <Select.Option value="ADMIN">Administrator</Select.Option>
+                <Select.Option value={INVESTOR_ROLE}>Investor</Select.Option>
+                <Select.Option value={ADMIN_ROLE}>Administrator</Select.Option>
               </Select>
+            </Form.Item>
+            <Form.Item
+              name="phone"
+              label="Client phone"
+              hasFeedback
+            >
+              <Input placeholder="Type user phone" />
             </Form.Item>
           </>
         )}

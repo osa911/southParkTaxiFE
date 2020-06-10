@@ -4,14 +4,14 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 
 import CustomForm from "../../components/EditableForm";
 import { requiredField } from "../../utils/FormHelpers";
-import { CREATE_CAR, GET_USERS_LIST } from "./gql/mutation";
 import styles from "./AddNewCar.module.scss";
+import { CREATE_CAR, GET_USERS_LIST_FOR_SELECT } from "../../gql";
 
 const AddNewCar = () => {
-  const { data: userListData = {}, loading: isUsersLoading } = useQuery(GET_USERS_LIST)
+  const { data: userListData = {}, loading: isUsersLoading } = useQuery(GET_USERS_LIST_FOR_SELECT)
   const [createCar, { data = {}, loading, called, client, error }] = useMutation(CREATE_CAR)
 
-  const { getUsersList: useList = [] } = userListData
+  const { getUsersList: userList = [] } = userListData
   useEffect(() => {
     if (error?.message) {
       notification.error({
@@ -44,12 +44,7 @@ const AddNewCar = () => {
       >
         {() => (
           <>
-            <Form.Item
-              name="title"
-              label="Title"
-              hasFeedback
-              rules={[requiredField('Title')]}
-            >
+            <Form.Item name="title" label="Title" hasFeedback rules={[requiredField('Title')]}>
               <Input placeholder="Type car title" />
             </Form.Item>
             <Form.Item
@@ -62,7 +57,7 @@ const AddNewCar = () => {
             </Form.Item>
             <Form.Item name="ownerId" label="Owner" hasFeedback rules={[requiredField('Owner')]}>
               <Select loading={isUsersLoading} placeholder="Select an owner">
-                {useList.map(({ id, name, email }) => (
+                {userList.map(({ id, name, email }) => (
                   <Select.Option key={id} value={id}>
                     {name}: {email}
                   </Select.Option>

@@ -1,10 +1,44 @@
-import React from 'react'
+import React from "react";
+import { Table } from "antd";
+import { createCol } from "../../utils/TableHelpers";
+import { useQuery } from "@apollo/react-hooks";
+import { GET_USERS_LIST } from "../../gql";
+import styles from "./UsersList.module.scss";
+
+const columns = [
+  createCol({ key: 'name' }),
+  createCol({ key: 'email' }),
+  createCol({ key: 'phone' }),
+  createCol({ key: 'role' }),
+  createCol({
+    key: 'cars',
+    render: (cars) => {
+      if (!cars.length) return null
+      return (
+        <ul className={styles.carList}>
+          {cars.map(({ id, title, govNumber }) => (
+            <li key={id}>{`${title} ${govNumber}`}</li>
+          ))}
+        </ul>
+      )
+    },
+  }),
+]
 
 const UsersList = () => {
+  const { data: userListData = {}, loading } = useQuery(GET_USERS_LIST)
+  const { getUsersList: userList = [] } = userListData
+
   return (
-    <div>
-      UsersList
-    </div>
+    <Table
+      dataSource={userList}
+      pagination={false}
+      rowKey="id"
+      size="small"
+      bordered
+      loading={loading}
+      columns={columns}
+    />
   )
 }
 

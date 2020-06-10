@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { Alert, Button, Divider, Form, Input, Spin } from "antd";
 import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
-import { LOGIN_USER } from "./gql/mutation";
 import styles from "./SignIn.module.scss";
 import { requiredField } from "../../utils/FormHelpers";
+import { LOGIN_USER } from "../../gql";
 
 const layout = {
   labelCol: { span: 24 },

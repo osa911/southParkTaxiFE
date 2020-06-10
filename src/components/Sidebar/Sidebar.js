@@ -1,15 +1,26 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Layout, Menu } from "antd";
 import styles from "./Sidebar.module.scss";
 import { menuItems } from "./menuItems";
+import { UserInfoContext } from "../../routes";
+import { ADMIN_ROLE } from "../../constants";
 
 const { Sider } = Layout
 const { Item: MenuItem, SubMenu } = Menu
 
 const Sidebar = () => {
   const { pathname = '' } = useLocation()
-  const homeMenuItem = useMemo(() => menuItems[0] || {}, [])
+  const { role: userRole } = useContext(UserInfoContext)
+  const authorizedMenuItems = useMemo(
+    () =>
+      menuItems.filter((menu) => {
+        if (userRole === ADMIN_ROLE) return true
+        return menu.role !== ADMIN_ROLE
+      }),
+    [userRole]
+  )
+  const homeMenuItem = useMemo(() => authorizedMenuItems[0] || {}, [authorizedMenuItems])
 
   const selectedMenuItemKey = useMemo(() => {
     const findSelectedMenuItemKey = (menuItemsList) => {
@@ -28,8 +39,8 @@ const Sidebar = () => {
         }
       }
     }
-    return findSelectedMenuItemKey(menuItems)
-  }, [homeMenuItem, pathname])
+    return findSelectedMenuItemKey(authorizedMenuItems)
+  }, [authorizedMenuItems, homeMenuItem.key, homeMenuItem.linkTo, pathname])
 
   const createMenuItem = (menuItem) =>
     menuItem.subMenu ? (
@@ -45,8 +56,13 @@ const Sidebar = () => {
   return (
     <Sider className={styles.sidebar}>
       <div className={styles.logo} />
-      <Menu theme="dark" mode="inline" defaultOpenKeys={['adminPanel']} selectedKeys={selectedMenuItemKey} >
-        {menuItems.map(createMenuItem)}
+      <Menu
+        theme="dark"
+        mode="inline"
+        defaultOpenKeys={['adminPanel']}
+        selectedKeys={selectedMenuItemKey}
+      >
+        {authorizedMenuItems.map(createMenuItem)}
       </Menu>
     </Sider>
   )

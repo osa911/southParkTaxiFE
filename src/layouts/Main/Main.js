@@ -18,8 +18,10 @@ const StandardLayout = ({ children }) => {
     <Layout className={styles.layout}>
       <Sidebar />
       <Layout className={styles.container}>
-        <Header className={styles.header} >
-          <Button type="link" onClick={handleLogOut}>Logout</Button>
+        <Header className={styles.header}>
+          <Button type="link" onClick={handleLogOut}>
+            Logout
+          </Button>
         </Header>
         {children}
         <Footer className={styles.footer}>SouthPark ©2020 Created by Yevhenii Osadchyi</Footer>

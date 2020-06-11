@@ -23,7 +23,7 @@ export const UserInfoContext = React.createContext()
 export default function Routes() {
   const { data: userInfoData = {}, loading } = useQuery(GET_USER_INFO)
   const savedUserInfo = localStorage.getItem('userInfo')
-  const { me: userInfo = JSON.parse(savedUserInfo || "{}") } = userInfoData
+  const { me: userInfo = JSON.parse(savedUserInfo || '{}') } = userInfoData
 
   useEffect(() => {
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
@@ -49,13 +49,7 @@ export default function Routes() {
             isAdmin
             path="/user-list"
           />
-          <RouteWithLayout
-            exact
-            layout={Standard}
-            component={CarsList}
-            isAdmin
-            path="/car-list"
-          />
+          <RouteWithLayout exact layout={Standard} component={CarsList} isAdmin path="/car-list" />
           <RouteWithLayout
             exact
             layout={Standard}

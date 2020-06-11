@@ -5,7 +5,7 @@ import { createUploadLink } from "apollo-upload-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
 const uri = process.env.REACT_APP_API
-const credentials = (process.env.NODE_ENV === 'production' ? { credentials: 'include' } : {})
+const credentials = process.env.NODE_ENV === 'production' ? { credentials: 'include' } : {}
 const httpLink = createUploadLink({
   uri,
   ...credentials,

@@ -13,7 +13,7 @@ const CustomForm = ({
   needToResetForm = false,
 }) => {
   const [form] = Form.useForm()
-  const [isFormDisabled, /*setFormDisabledState*/] = useState(false)
+  const [isFormDisabled /*setFormDisabledState*/] = useState(false)
 
   useEffect(() => {
     form.setFieldsValue(formData)

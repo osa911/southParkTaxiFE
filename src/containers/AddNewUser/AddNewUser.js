@@ -72,11 +72,7 @@ const AddNewUser = () => {
                 <Select.Option value={ADMIN_ROLE}>Administrator</Select.Option>
               </Select>
             </Form.Item>
-            <Form.Item
-              name="phone"
-              label="Client phone"
-              hasFeedback
-            >
+            <Form.Item name="phone" label="Client phone" hasFeedback>
               <Input placeholder="Type user phone" />
             </Form.Item>
           </>

@@ -1,36 +1,47 @@
 import { gql } from "apollo-boost";
 
 export const CREATE_USER = gql`
-	mutation createUser($name: String!, $password: String!, $email: String!) {
-		createUser(name: $name, password: $password, email: $email) {
-			id
-			name
-		}
-	}
+  mutation createUser($name: String!, $password: String!, $email: String!) {
+    createUser(name: $name, password: $password, email: $email) {
+      id
+      name
+    }
+  }
 `
 
 export const CREATE_CAR = gql`
-	mutation createCar($title: String!, $govNumber: String!, $ownerId: String!, $price: Float, $mileage: Float) {
-		createCar(title: $title, govNumber: $govNumber, ownerId: $ownerId, price: $price, mileage: $mileage) {
-			id
-			govNumber
-		}
-	}
+  mutation createCar(
+    $title: String!
+    $govNumber: String!
+    $ownerId: String!
+    $price: Float
+    $mileage: Float
+  ) {
+    createCar(
+      title: $title
+      govNumber: $govNumber
+      ownerId: $ownerId
+      price: $price
+      mileage: $mileage
+    ) {
+      id
+      govNumber
+    }
+  }
 `
 
 export const LOGIN_USER = gql`
-	mutation loginUser($password: String!, $email: String!) {
-		loginUser(password: $password, email: $email)
-	}
+  mutation loginUser($password: String!, $email: String!) {
+    loginUser(password: $password, email: $email)
+  }
 `
 
 export const UPLOAD_FILE_STREAM = gql`
-	mutation uploadReportFile($file: Upload!, $date: String!) {
-		uploadReportFile(file: $file, date: $date) {
-			id
-			title
-			govNumber
-		}
-	}
-`;
-
+  mutation uploadReportFile($file: Upload!, $date: String!) {
+    uploadReportFile(file: $file, date: $date) {
+      id
+      title
+      govNumber
+    }
+  }
+`

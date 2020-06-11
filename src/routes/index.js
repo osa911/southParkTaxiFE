@@ -16,12 +16,14 @@ import UploadFile from "../containers/UploadFile";
 import AdminPanelCreatePage from "../pages/AdminPanelCreatePage";
 import UsersList from "../containers/UsersList";
 import CarsList from "../containers/CarsList";
+import ReportsList from "../containers/ReportsList";
 
 export const UserInfoContext = React.createContext()
 
 export default function Routes() {
   const { data: userInfoData = {}, loading } = useQuery(GET_USER_INFO)
-  const { me: userInfo = JSON.parse(localStorage.getItem('userInfo') || {}) } = userInfoData
+  const savedUserInfo = localStorage.getItem('userInfo')
+  const { me: userInfo = JSON.parse(savedUserInfo || "{}") } = userInfoData
 
   useEffect(() => {
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
@@ -53,6 +55,13 @@ export default function Routes() {
             component={CarsList}
             isAdmin
             path="/car-list"
+          />
+          <RouteWithLayout
+            exact
+            layout={Standard}
+            component={ReportsList}
+            isAdmin
+            path="/reports-list"
           />
           <RouteWithLayout exact layout={Standard} component={UploadFile} isAdmin path="/upload" />
           <RouteWithLayout exact layout={Minimal} component={SignIn} path="/signIn" notPrivate />

@@ -47,6 +47,12 @@ export const menuItems = [
         name: 'Car list',
         icon: <UnorderedListOutlined />,
       },
+      {
+        key: 'reports_list',
+        linkTo: '/reports-list',
+        name: 'Reports list',
+        icon: <UnorderedListOutlined />,
+      },
     ],
   },
 ]

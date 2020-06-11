@@ -47,6 +47,34 @@ export const GET_CARS_LIST = gql`
 				id
 				name
 			}
+			report {
+				id
+				netProfit
+				netProfitUSD
+				title
+			}
+		}
+	}
+`
+
+export const GET_REPORTS_LIST = gql`
+	query getReportsList {
+		getReportsList {
+			exchangeRate
+			govNumber
+			id
+			income
+			incomeBranding
+			managementFee
+			managementFeePercent
+			mileage
+			netProfit
+			netProfitUSD
+			serviceFee
+			totalIncome
+			trackerFee
+			week
+			year
 		}
 	}
 `

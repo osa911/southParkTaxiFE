@@ -10,6 +10,19 @@ const columns = [
   createCol({ key: 'price' }),
   createCol({ key: 'mileage' }),
   createCol({ title: 'Owner', key: 'user', dataIndex: ['user', 'name'] }),
+  createCol({
+    title: 'Reports',
+    key: 'report',
+    render: (c = []) => (
+      <ul>
+        {c.map(({ id, netProfit, netProfitUSD, title }) => (
+          <li key={id}>
+            Title: {title} netProfit: {netProfit}, netProfitUSD: {netProfitUSD}
+          </li>
+        ))}
+      </ul>
+    ),
+  }),
 ]
 
 const CarsList = () => {

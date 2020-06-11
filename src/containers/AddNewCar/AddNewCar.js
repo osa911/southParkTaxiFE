@@ -6,19 +6,14 @@ import CustomForm from "../../components/EditableForm";
 import { requiredField } from "../../utils/FormHelpers";
 import styles from "./AddNewCar.module.scss";
 import { CREATE_CAR, GET_USERS_LIST_FOR_SELECT } from "../../gql";
+import { useErrorNotification } from "../../hooks/useErrorNotification";
 
 const AddNewCar = () => {
   const { data: userListData = {}, loading: isUsersLoading } = useQuery(GET_USERS_LIST_FOR_SELECT)
   const [createCar, { data = {}, loading, called, client, error }] = useMutation(CREATE_CAR)
-
+  useErrorNotification(client, error)
   const { getUsersList: userList = [] } = userListData
   useEffect(() => {
-    if (error?.message) {
-      notification.error({
-        message: 'Error!',
-        description: error.message,
-      })
-    }
     if (data?.createCar?.id) {
       notification.success({
         message: 'Successes!',

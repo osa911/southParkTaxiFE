@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { GET_CARS_LIST } from '../../gql'
 import { Table } from 'antd'
 import { createCol } from '../../utils/TableHelpers'
+import { useErrorNotification } from "../../hooks/useErrorNotification";
 
 const columns = [
   createCol({ key: 'title' }),
@@ -26,7 +27,8 @@ const columns = [
 ]
 
 const CarsList = () => {
-  const { data: getCarsList = {}, loading } = useQuery(GET_CARS_LIST)
+  const { data: getCarsList = {}, loading, error, client } = useQuery(GET_CARS_LIST)
+  useErrorNotification(client, error)
   const { getCarsList: carList = [] } = getCarsList
 
   return (

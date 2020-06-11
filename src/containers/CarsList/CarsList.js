@@ -1,8 +1,8 @@
-import React from "react";
-import { useQuery } from "@apollo/react-hooks";
-import { GET_CARS_LIST } from "../../gql";
-import { Table } from "antd";
-import { createCol } from "../../utils/TableHelpers";
+import React from 'react'
+import { useQuery } from '@apollo/react-hooks'
+import { GET_CARS_LIST } from '../../gql'
+import { Table } from 'antd'
+import { createCol } from '../../utils/TableHelpers'
 
 const columns = [
   createCol({ key: 'title' }),

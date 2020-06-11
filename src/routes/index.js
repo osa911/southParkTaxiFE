@@ -1,28 +1,28 @@
-import React, { useEffect } from "react";
-import { Redirect, Switch } from "react-router-dom";
-import { useQuery } from "@apollo/react-hooks";
-import { Spin } from "antd";
+import React, { useEffect } from 'react'
+import { Redirect, Switch } from 'react-router-dom'
+import { useQuery } from '@apollo/react-hooks'
+import { Spin } from 'antd'
 
-import { GET_USER_INFO } from "../gql";
-import Home from "../containers/Home";
-import SignIn from "../containers/SignIn/SignIn";
-import Page404 from "../containers/Page404";
-import Minimal from "../layouts/Minimal";
-import Standard from "../layouts/Standard";
-import StandardMini from "../layouts/StandardMini";
-import RouteWithLayout from "./RouteWithLayout";
-import Tracker from "../containers/Tracker";
-import UploadFile from "../containers/UploadFile";
-import AdminPanelCreatePage from "../pages/AdminPanelCreatePage";
-import UsersList from "../containers/UsersList";
-import CarsList from "../containers/CarsList";
-import ReportsList from "../containers/ReportsList";
+import { GET_USER_INFO } from '../gql'
+import Home from '../containers/Home'
+import SignIn from '../containers/SignIn/SignIn'
+import Page404 from '../containers/Page404'
+import Minimal from '../layouts/Minimal'
+import Standard from '../layouts/Standard'
+import StandardMini from '../layouts/StandardMini'
+import RouteWithLayout from './RouteWithLayout'
+import Tracker from '../containers/Tracker'
+import UploadFile from '../containers/UploadFile'
+import AdminPanelCreatePage from '../pages/AdminPanelCreatePage'
+import UsersList from '../containers/UsersList'
+import CarsList from '../containers/CarsList'
+import ReportsList from '../containers/ReportsList'
 
 export const UserInfoContext = React.createContext()
 
 export default function Routes() {
-  const { data: userInfoData = {}, loading } = useQuery(GET_USER_INFO)
   const savedUserInfo = localStorage.getItem('userInfo')
+  const { data: userInfoData = {}, loading } = useQuery(GET_USER_INFO)
   const { me: userInfo = JSON.parse(savedUserInfo || '{}') } = userInfoData
 
   useEffect(() => {

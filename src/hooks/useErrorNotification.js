@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { notification } from "antd";
+import { useEffect } from 'react'
+import { notification } from 'antd'
 
 export const useErrorNotification = (client, error) => {
   useEffect(() => {

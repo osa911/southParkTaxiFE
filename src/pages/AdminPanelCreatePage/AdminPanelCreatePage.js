@@ -1,9 +1,9 @@
-import React from "react";
-import { Card, Col, Row } from "antd";
-import styles from "./AdminPanelCreatePage.module.scss";
+import React from 'react'
+import { Card, Col, Row } from 'antd'
+import styles from './AdminPanelCreatePage.module.scss'
 
-import AddNewUser from "../../containers/AddNewUser";
-import AddNewCar from "../../containers/AddNewCar";
+import AddNewUser from '../../containers/AddNewUser'
+import AddNewCar from '../../containers/AddNewCar'
 
 const AdminPanelCreatePage = () => {
   return (

@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect } from "react";
-import { Form, Input, InputNumber, notification, Select, Spin } from "antd";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import React, { useCallback, useEffect } from 'react'
+import { Form, Input, InputNumber, notification, Select, Spin } from 'antd'
+import { useMutation, useQuery } from '@apollo/react-hooks'
 
-import CustomForm from "../../components/EditableForm";
-import { requiredField } from "../../utils/FormHelpers";
-import styles from "./AddNewCar.module.scss";
-import { CREATE_CAR, GET_USERS_LIST_FOR_SELECT } from "../../gql";
-import { useErrorNotification } from "../../hooks/useErrorNotification";
+import CustomForm from '../../components/EditableForm'
+import { requiredField } from '../../utils/FormHelpers'
+import styles from './AddNewCar.module.scss'
+import { CREATE_CAR, GET_USERS_LIST_FOR_SELECT } from '../../gql'
+import { useErrorNotification } from '../../hooks/useErrorNotification'
 
 const AddNewCar = () => {
   const { data: userListData = {}, loading: isUsersLoading } = useQuery(GET_USERS_LIST_FOR_SELECT)

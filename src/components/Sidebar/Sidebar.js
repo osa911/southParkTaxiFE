@@ -1,10 +1,10 @@
-import React, { useContext, useMemo } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Layout, Menu } from "antd";
-import styles from "./Sidebar.module.scss";
-import { menuItems } from "./menuItems";
-import { UserInfoContext } from "../../routes";
-import { ADMIN_ROLE } from "../../constants";
+import React, { useContext, useMemo } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { Layout, Menu } from 'antd'
+import styles from './Sidebar.module.scss'
+import { menuItems } from './menuItems'
+import { UserInfoContext } from '../../routes'
+import { ADMIN_ROLE } from '../../constants'
 
 const { Sider } = Layout
 const { Item: MenuItem, SubMenu } = Menu

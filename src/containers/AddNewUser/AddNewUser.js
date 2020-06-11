@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect } from "react";
-import { Form, Input, notification, Select, Spin } from "antd";
-import { useMutation } from "@apollo/react-hooks";
+import React, { useCallback, useEffect } from 'react'
+import { Form, Input, notification, Select, Spin } from 'antd'
+import { useMutation } from '@apollo/react-hooks'
 
-import CustomForm from "../../components/EditableForm";
-import { requiredField } from "../../utils/FormHelpers";
-import { CREATE_USER } from "../../gql";
-import { ADMIN_ROLE, INVESTOR_ROLE } from "../../constants";
+import CustomForm from '../../components/EditableForm'
+import { requiredField } from '../../utils/FormHelpers'
+import { CREATE_USER } from '../../gql'
+import { ADMIN_ROLE, INVESTOR_ROLE } from '../../constants'
 
 const AddNewUser = () => {
   const [createNewUser, { data = {}, loading, called, client, error }] = useMutation(CREATE_USER)

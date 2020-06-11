@@ -1,7 +1,7 @@
-import React from "react";
-import { HomeFilled, PlusOutlined, UnorderedListOutlined, UploadOutlined } from "@ant-design/icons";
-import { AdminIcon, GpsIcon } from "../Icons";
-import { ADMIN_ROLE } from "../../constants";
+import React from 'react'
+import { HomeFilled, PlusOutlined, UnorderedListOutlined, UploadOutlined } from '@ant-design/icons'
+import { AdminIcon, GpsIcon } from '../Icons'
+import { ADMIN_ROLE } from '../../constants'
 
 export const menuItems = [
   {

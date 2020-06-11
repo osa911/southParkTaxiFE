@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import { Button, Divider, Form } from "antd";
-import cn from "classnames";
-import styles from "./CustomForm.module.scss";
+import React, { useCallback, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { Button, Divider, Form } from 'antd'
+import cn from 'classnames'
+import styles from './CustomForm.module.scss'
 
 const CustomForm = ({
   children: FormItems,

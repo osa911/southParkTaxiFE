@@ -1,4 +1,4 @@
-import { gql } from "apollo-boost";
+import { gql } from 'apollo-boost'
 
 export const GET_USERS_LIST_FOR_SELECT = gql`
   query getUsersList {

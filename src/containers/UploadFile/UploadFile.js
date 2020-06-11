@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import moment from "moment";
-import { Alert, Button, Col, DatePicker, Divider, Form, message, Row, Upload } from "antd";
-import { InboxOutlined } from "@ant-design/icons";
-import { useMutation } from "@apollo/react-hooks";
-import { UPLOAD_FILE_STREAM } from "../../gql";
-import { useErrorNotification } from "../../hooks/useErrorNotification";
+import React, { useState } from 'react'
+import moment from 'moment'
+import { Alert, Button, Col, DatePicker, Divider, Form, message, Row, Upload } from 'antd'
+import { InboxOutlined } from '@ant-design/icons'
+import { useMutation } from '@apollo/react-hooks'
+import { UPLOAD_FILE_STREAM } from '../../gql'
+import { useErrorNotification } from '../../hooks/useErrorNotification'
 
 const UploadFile = () => {
   const [upload, { data = {}, loading, error, client }] = useMutation(UPLOAD_FILE_STREAM)

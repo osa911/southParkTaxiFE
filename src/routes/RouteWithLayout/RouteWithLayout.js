@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { Redirect, Route } from "react-router-dom";
-import PrivateRoute from "../PrivateRoute";
-import { UserInfoContext } from "../index";
-import { ADMIN_ROLE, INVESTOR_ROLE } from "../../constants";
+import React, { useContext } from 'react'
+import { Redirect, Route } from 'react-router-dom'
+import PrivateRoute from '../PrivateRoute'
+import { UserInfoContext } from '../index'
+import { ADMIN_ROLE, INVESTOR_ROLE } from '../../constants'
 
 const RouteWithLayout = (props) => {
   const { role: userRole } = useContext(UserInfoContext)

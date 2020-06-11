@@ -1,9 +1,9 @@
-import React from "react";
-import { Table } from "antd";
-import { createCol } from "../../utils/TableHelpers";
-import { useQuery } from "@apollo/react-hooks";
-import { GET_USERS_LIST } from "../../gql";
-import styles from "./UsersList.module.scss";
+import React from 'react'
+import { Table } from 'antd'
+import { createCol } from '../../utils/TableHelpers'
+import { useQuery } from '@apollo/react-hooks'
+import { GET_USERS_LIST } from '../../gql'
+import styles from './UsersList.module.scss'
 
 const columns = [
   createCol({ key: 'name' }),

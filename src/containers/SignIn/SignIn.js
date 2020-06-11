@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
-import { Alert, Button, Divider, Form, Input, Spin } from "antd";
-import { useHistory } from "react-router-dom";
-import { useMutation } from "@apollo/react-hooks";
-import styles from "./SignIn.module.scss";
-import { requiredField } from "../../utils/FormHelpers";
-import { LOGIN_USER } from "../../gql";
+import React, { useEffect } from 'react'
+import { Alert, Button, Divider, Form, Input, Spin } from 'antd'
+import { useHistory } from 'react-router-dom'
+import { useLazyQuery, useMutation } from '@apollo/react-hooks'
+import styles from './SignIn.module.scss'
+import { requiredField } from '../../utils/FormHelpers'
+import { GET_USER_INFO, LOGIN_USER } from '../../gql'
 
 const layout = {
   labelCol: { span: 24 },
@@ -17,15 +17,31 @@ const tailLayout = {
 const SignIn = () => {
   const history = useHistory()
   const [form] = Form.useForm()
-  const [loginUser, { data = {}, loading, error, called, ...rest }] = useMutation(LOGIN_USER)
+  const [loginUser, { data = {}, loading, error, called }] = useMutation(LOGIN_USER)
+
+  const [loadUserInfo, { data: userInfoData = {} }] = useLazyQuery(GET_USER_INFO, {
+    context: {
+      headers: {
+        authorization: data.loginUser,
+      },
+    },
+  })
+
+  useEffect(() => {
+    const { loginUser } = data
+    if (loginUser && userInfoData.me) {
+      localStorage.setItem('userInfo', JSON.stringify(userInfoData.me))
+      history.push('/')
+    }
+  }, [data, history, userInfoData])
 
   useEffect(() => {
     const { loginUser } = data
     if (loginUser) {
       localStorage.setItem('token', loginUser)
-      history.push('/')
+      loadUserInfo()
     }
-  }, [data, error, called, rest, history])
+  }, [data, error, called, history, loadUserInfo])
 
   const onFinish = async (values) => {
     await loginUser({ variables: values })

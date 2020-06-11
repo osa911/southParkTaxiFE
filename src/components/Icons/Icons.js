@@ -1,6 +1,6 @@
-import React from "react";
-import Icon from "@ant-design/icons";
-import { AdministratorSVG, GpsCarSVG, GpsSVG } from "../SVG";
+import React from 'react'
+import Icon from '@ant-design/icons'
+import { AdministratorSVG, GpsCarSVG, GpsSVG } from '../SVG'
 
 export const GpsCarIcon = (props) => <Icon component={GpsCarSVG} {...props} />
 

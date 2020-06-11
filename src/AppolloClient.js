@@ -1,8 +1,8 @@
-import { ApolloClient } from "apollo-client";
-import { ApolloLink } from "apollo-link";
-import { onError } from "apollo-link-error";
-import { createUploadLink } from "apollo-upload-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloClient } from 'apollo-client'
+import { ApolloLink } from 'apollo-link'
+import { onError } from 'apollo-link-error'
+import { createUploadLink } from 'apollo-upload-client'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 
 const uri = process.env.REACT_APP_API
 const credentials = process.env.NODE_ENV === 'production' ? { credentials: 'include' } : {}

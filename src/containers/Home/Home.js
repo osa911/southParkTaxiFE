@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Tabs, Card, Col, Row, Tag, Table, Descriptions } from 'antd'
-import { Line } from '@ant-design/charts'
+// import { Line } from '@ant-design/charts'
 import moment from 'moment'
 import { useQuery } from '@apollo/react-hooks'
 import { GET_REPORT_BY_INVESTOR } from '../../gql'
@@ -31,12 +31,12 @@ const Home = () => {
   const { getReportsByCarsByOwnerId: reports = [] } = carsDataWithDate
   useErrorNotification(client, error)
 
-  const { data: carsData = {} } = useQuery(GET_REPORT_BY_INVESTOR, {
-    variables: {
-      ownerId: id,
-    },
-  })
-  const { getReportsByCarsByOwnerId: reportsForChart = [] } = carsData
+  // const { data: carsData = {} } = useQuery(GET_REPORT_BY_INVESTOR, {
+  //   variables: {
+  //     ownerId: id,
+  //   },
+  // })
+  // const { getReportsByCarsByOwnerId: reportsForChart = [] } = carsData
 
   const currency = ' грн.'
   const expandedRowRender = ({
@@ -100,33 +100,33 @@ const Home = () => {
     )
   }
 
-  const config = {
-    title: {
-      visible: true,
-      text: 'Chart of income by cars for all time',
-    },
-    padding: 'auto',
-    forceFit: true,
-    legend: { position: 'top' },
-    data: reportsForChart,
-    xField: 'week',
-    yField: 'netProfit',
-    seriesField: 'govNumber',
-    xAxis: {
-      label: {
-        formatter: (v) => `#${v}`,
-      },
-    },
-    yAxis: { label: { formatter: (v) => `${v}, грн.` } },
-    responsive: true,
-    animation: { appear: { animation: 'clipingWithData' } },
-    interactions: [
-      {
-        type: 'slider',
-      },
-    ],
-    smooth: true,
-  }
+  // const config = {
+  //   title: {
+  //     visible: true,
+  //     text: 'Chart of income by cars for all time',
+  //   },
+  //   padding: 'auto',
+  //   forceFit: true,
+  //   legend: { position: 'top' },
+  //   data: reportsForChart,
+  //   xField: 'week',
+  //   yField: 'netProfit',
+  //   seriesField: 'govNumber',
+  //   xAxis: {
+  //     label: {
+  //       formatter: (v) => `#${v}`,
+  //     },
+  //   },
+  //   yAxis: { label: { formatter: (v) => `${v}, грн.` } },
+  //   responsive: true,
+  //   animation: { appear: { animation: 'clipingWithData' } },
+  //   interactions: [
+  //     {
+  //       type: 'slider',
+  //     },
+  //   ],
+  //   smooth: true,
+  // }
 
   return (
     <Row>
@@ -148,7 +148,7 @@ const Home = () => {
       </Col>
       <Col span={12}>
         <Card style={{ margin: 5 }}>
-          <Line {...config} />
+          {/*<Line {...config} />*/}
         </Card>
       </Col>
     </Row>

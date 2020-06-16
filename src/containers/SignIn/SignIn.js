@@ -19,13 +19,16 @@ const SignIn = () => {
   const [form] = Form.useForm()
   const [loginUser, { data = {}, loading, error, called }] = useMutation(LOGIN_USER)
 
-  const [loadUserInfo, { data: userInfoData = {} }] = useLazyQuery(GET_USER_INFO, {
-    context: {
-      headers: {
-        authorization: data.loginUser,
+  const [loadUserInfo, { data: userInfoData = {}, loading: loadingUserInfo }] = useLazyQuery(
+    GET_USER_INFO,
+    {
+      context: {
+        headers: {
+          authorization: data.loginUser,
+        },
       },
-    },
-  })
+    }
+  )
 
   useEffect(() => {
     const { loginUser } = data
@@ -48,7 +51,7 @@ const SignIn = () => {
   }
 
   return (
-    <Spin tip="Loading" spinning={loading}>
+    <Spin tip="Loading" spinning={loading || loadingUserInfo}>
       {called && error && (
         <div className={styles.error}>
           <Alert message="Error" description={error.message} type="error" closable />

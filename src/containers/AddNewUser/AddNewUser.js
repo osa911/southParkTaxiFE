@@ -66,7 +66,7 @@ const AddNewUser = () => {
             >
               <Input placeholder="Type user e-mail" />
             </Form.Item>
-            <Form.Item name="role" label="Role" hasFeedback rules={[{ ...requiredField('Role') }]}>
+            <Form.Item name="role" label="Role" hasFeedback rules={[requiredField('Role')]}>
               <Select placeholder="Select a role">
                 <Select.Option value={INVESTOR_ROLE}>Investor</Select.Option>
                 <Select.Option value={ADMIN_ROLE}>Administrator</Select.Option>

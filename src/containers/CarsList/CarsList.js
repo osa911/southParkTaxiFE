@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { GET_CARS_LIST } from '../../gql'
 import { Table } from 'antd'
 import { createCol } from '../../utils/TableHelpers'
-import { useErrorNotification } from "../../hooks/useErrorNotification";
+import { useErrorNotification } from '../../hooks/useErrorNotification'
 
 const columns = [
   createCol({ key: 'title' }),
@@ -12,8 +12,7 @@ const columns = [
   createCol({ key: 'mileage' }),
   createCol({ title: 'Owner', key: 'user', dataIndex: ['user', 'name'] }),
   createCol({
-    title: 'Reports',
-    key: 'report',
+    key: 'reports',
     render: (c = []) => (
       <ul>
         {c.map(({ id, netProfit, netProfitUSD, title }) => (

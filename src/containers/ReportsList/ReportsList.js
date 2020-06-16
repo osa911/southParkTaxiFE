@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/react-hooks'
 import { Table } from 'antd'
 import { GET_REPORTS_LIST } from '../../gql'
 import { createCol } from '../../utils/TableHelpers'
-import { useErrorNotification } from "../../hooks/useErrorNotification";
+import { useErrorNotification } from '../../hooks/useErrorNotification'
 
 const columns = [
   createCol({ title: 'Government Number', key: 'govNumber' }),

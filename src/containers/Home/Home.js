@@ -1,7 +1,158 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { Tabs, Card, Col, Row, Tag, Table, Descriptions } from 'antd'
+import { Line } from '@ant-design/charts'
+import moment from 'moment'
+import { useQuery } from '@apollo/react-hooks'
+import { GET_REPORT_BY_INVESTOR } from '../../gql'
+import { useErrorNotification } from '../../hooks/useErrorNotification'
+import { createCol } from '../../utils/TableHelpers'
+import { UserInfoContext } from '../../routes'
+import WeekPicker from '../../components/WeekPicker'
+
+const { TabPane } = Tabs
+
+const columns = [
+  createCol({ key: 'govNumber' }),
+  createCol({ key: 'totalIncome' }),
+  createCol({ key: 'totalFee' }),
+  createCol({ key: 'netProfit' }),
+  createCol({ key: 'netProfitUSD' }),
+]
 
 const Home = () => {
-  return <div>Home</div>
+  const { id } = useContext(UserInfoContext)
+  const [date, setDate] = useState(() => moment().subtract(7, 'days'))
+  const { data: carsDataWithDate = {}, loading, client, error } = useQuery(GET_REPORT_BY_INVESTOR, {
+    variables: {
+      ownerId: id,
+      date,
+    },
+  })
+  const { getReportsByCarsByOwnerId: reports = [] } = carsDataWithDate
+  useErrorNotification(client, error)
+
+  const { data: carsData = {} } = useQuery(GET_REPORT_BY_INVESTOR, {
+    variables: {
+      ownerId: id,
+    },
+  })
+  const { getReportsByCarsByOwnerId: reportsForChart = [] } = carsData
+
+  const currency = ' грн.'
+  const expandedRowRender = ({
+    govNumber,
+    income,
+    incomeBranding,
+    totalIncome,
+    mileage,
+    serviceFee,
+    managementFee,
+    managementFeePercent,
+    totalFee,
+    netProfit,
+    exchangeRate,
+    netProfitUSD,
+  }) => {
+    return (
+      <div style={{ backgroundColor: '#ffffff' }}>
+        <Descriptions
+          layout="vertical"
+          bordered
+          size="small"
+          title={`More details by car ${govNumber}`}
+          // column={{ xxl: 4, xl: 4, lg: 4, md: 4, sm: 2, xs: 1 }}
+        >
+          <Descriptions.Item label="Доход от такси">
+            <Tag color="green">{`${Number(income)}${currency}`}</Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label="Доход от брендирования">
+            <Tag color="green">{`${Number(incomeBranding)}${currency}`}</Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label="Сумма доходов">
+            <Tag color="#87d068">{`${Number(totalIncome)}${currency}`}</Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label="ТО">
+            <Tag color="red">{`${Number(serviceFee)}${currency}`}</Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label="Управление автопарком">
+            <Tag color="red">{`${Number(managementFee)}${currency}`}</Tag>
+          </Descriptions.Item>
+          {/*<Descriptions.Item label="% автопарка">*/}
+          {/*  {managementFeePercent && (*/}
+          {/*    <Alert message={`${Number(managementFeePercent)}%`} type="error" />*/}
+          {/*  )}*/}
+          {/*</Descriptions.Item>*/}
+          <Descriptions.Item label="Сумма расходов">
+            <Tag color="#f50">{`${Number(totalFee)}${currency}`}</Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label="Пробег">
+            <Tag color="blue">{`${Number(mileage)}км`}</Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label="Курс НБУ">
+            <Tag color="blue">{`${Number(exchangeRate)}${currency}`}</Tag>
+          </Descriptions.Item>
+          <Descriptions.Item label="Итого прибыль">
+            <Tag color={netProfit > 0 ? '#2db7f5' : 'red'}>{`${Number(netProfit)}${currency}`}</Tag>
+            <Tag color={netProfit > 0 ? '#2db7f5' : 'red'}>{`${Number(netProfitUSD)} USD`}</Tag>
+          </Descriptions.Item>
+        </Descriptions>
+      </div>
+    )
+  }
+
+  const config = {
+    title: {
+      visible: true,
+      text: 'Chart of income by cars for all time',
+    },
+    padding: 'auto',
+    forceFit: true,
+    legend: { position: 'top' },
+    data: reportsForChart,
+    xField: 'week',
+    yField: 'netProfit',
+    seriesField: 'govNumber',
+    xAxis: {
+      label: {
+        formatter: (v) => `#${v}`,
+      },
+    },
+    yAxis: { label: { formatter: (v) => `${v}, грн.` } },
+    responsive: true,
+    animation: { appear: { animation: 'clipingWithData' } },
+    interactions: [
+      {
+        type: 'slider',
+      },
+    ],
+    smooth: true,
+  }
+
+  return (
+    <Row>
+      <Col span={12}>
+        <Card style={{ margin: 5 }}>
+          <Tabs tabBarExtraContent={<WeekPicker value={date} onChange={setDate} />}>
+            <TabPane tab="Report by cars" key="1">
+              <Table
+                dataSource={reports}
+                rowKey="id"
+                pagination={false}
+                loading={loading}
+                columns={columns}
+                expandable={{ expandedRowRender }}
+              />
+            </TabPane>
+          </Tabs>
+        </Card>
+      </Col>
+      <Col span={12}>
+        <Card style={{ margin: 5 }}>
+          <Line {...config} />
+        </Card>
+      </Col>
+    </Row>
+  )
 }
 
 export default Home

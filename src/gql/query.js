@@ -15,6 +15,7 @@ export const GET_USER_INFO = gql`
       id
       name
       role
+      email
     }
   }
 `
@@ -47,12 +48,37 @@ export const GET_CARS_LIST = gql`
         id
         name
       }
-      report {
+      reports {
         id
         netProfit
         netProfitUSD
         title
       }
+    }
+  }
+`
+
+export const GET_REPORT_BY_INVESTOR = gql`
+  query getReportsByCarsByOwnerId($ownerId: String!, $date: String) {
+    getReportsByCarsByOwnerId(ownerId: $ownerId, date: $date) {
+      exchangeRate
+      govNumber
+      govNumberId
+      id
+      income
+      incomeBranding
+      managementFee
+      managementFeePercent
+      mileage
+      netProfit
+      netProfitUSD
+      serviceFee
+      title
+      totalIncome
+      totalFee
+      trackerFee
+      week
+      year
     }
   }
 `

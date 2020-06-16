@@ -17,13 +17,6 @@ export const menuItems = [
     name: 'Tracker',
   },
   {
-    key: 'upload',
-    linkTo: '/upload',
-    role: ADMIN_ROLE,
-    icon: <UploadOutlined />,
-    name: 'Upload report file',
-  },
-  {
     key: 'adminPanel',
     icon: <AdminIcon />,
     role: ADMIN_ROLE,
@@ -34,6 +27,13 @@ export const menuItems = [
         linkTo: '/create',
         name: 'Create new',
         icon: <PlusOutlined />,
+      },
+      {
+        key: 'upload',
+        linkTo: '/upload',
+        role: ADMIN_ROLE,
+        icon: <UploadOutlined />,
+        name: 'Upload report',
       },
       {
         key: 'user_list',

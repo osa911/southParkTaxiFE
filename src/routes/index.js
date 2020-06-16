@@ -17,6 +17,7 @@ import AdminPanelCreatePage from '../pages/AdminPanelCreatePage'
 import UsersList from '../containers/UsersList'
 import CarsList from '../containers/CarsList'
 import ReportsList from '../containers/ReportsList'
+import StandardClean from '../layouts/StandardClean'
 
 export const UserInfoContext = React.createContext()
 
@@ -31,9 +32,9 @@ export default function Routes() {
 
   return (
     <Spin spinning={loading}>
-      <UserInfoContext.Provider value={userInfo}>
+      <UserInfoContext.Provider value={{ ...userInfo }}>
         <Switch>
-          <RouteWithLayout exact layout={Standard} component={Home} path="/" />
+          <RouteWithLayout exact layout={StandardClean} component={Home} path="/" />
           <RouteWithLayout exact layout={StandardMini} component={Tracker} path="/tracker" />
           <RouteWithLayout
             exact

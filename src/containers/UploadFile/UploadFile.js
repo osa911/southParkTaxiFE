@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-import { Alert, Button, Col, DatePicker, Divider, Form, message, Row, Upload } from 'antd'
+import { Alert, Button, Col, Divider, Form, message, Row, Upload } from 'antd'
 import { InboxOutlined } from '@ant-design/icons'
 import { useMutation } from '@apollo/react-hooks'
 import { UPLOAD_FILE_STREAM } from '../../gql'
 import { useErrorNotification } from '../../hooks/useErrorNotification'
+import WeekPicker from '../../components/WeekPicker'
 
 const UploadFile = () => {
   const [upload, { data = {}, loading, error, client }] = useMutation(UPLOAD_FILE_STREAM)
   useErrorNotification(client, error)
   const [fileList, setFileList] = useState([])
-  const { uploadReportFile: report = [] } = data
+  const { uploadReportFile: reports = [] } = data
 
   const [date, setDate] = useState(() => moment().subtract(7, 'days'))
 
@@ -50,7 +51,7 @@ const UploadFile = () => {
         </Col>
         <Col offset={1} span={6}>
           <Form.Item label="Select the week number of report">
-            <DatePicker value={date} onChange={setDate} picker="week" />
+            <WeekPicker value={date} onChange={setDate} />
           </Form.Item>
           <Row>
             <Button
@@ -65,12 +66,13 @@ const UploadFile = () => {
           </Row>
         </Col>
       </Row>
-      {!!report.length && (
+      {!!reports.length && (
         <>
           <Divider>Report Data</Divider>
-          {report.map(({ id, title, govNumber }) => (
+          {reports.map(({ id, title, govNumber }) => (
             <Alert
               key={id}
+              style={{ marginTop: 5 }}
               message={`${title} and car with government number "${govNumber}" successfully saved.`}
             />
           ))}

@@ -4,7 +4,7 @@ import { createCol } from '../../utils/TableHelpers'
 import { useQuery } from '@apollo/react-hooks'
 import { GET_USERS_LIST } from '../../gql'
 import styles from './UsersList.module.scss'
-import { useErrorNotification } from "../../hooks/useErrorNotification";
+import { useErrorNotification } from '../../hooks/useErrorNotification'
 
 const columns = [
   createCol({ key: 'name' }),

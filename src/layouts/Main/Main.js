@@ -1,5 +1,5 @@
 import React, { useContext, useState, useCallback } from 'react'
-import { Button, Layout, Col } from 'antd'
+import { Button, Layout, Col, Drawer, Grid } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import { useApolloClient } from '@apollo/react-hooks'
 import { useHistory } from 'react-router-dom'
@@ -8,8 +8,10 @@ import Sidebar from '../../components/Sidebar/Sidebar'
 import { UserInfoContext } from '../../routes'
 
 const { Header, Footer } = Layout
+const { useBreakpoint } = Grid
 
 const MainLayout = ({ children }) => {
+  const screens = useBreakpoint()
   const { email } = useContext(UserInfoContext)
   const client = useApolloClient()
   const { push } = useHistory()
@@ -37,7 +39,17 @@ const MainLayout = ({ children }) => {
 
   return (
     <Layout className={styles.layout}>
-      <Sidebar collapsed={isCollapsed} />
+      {!screens.md && (
+        <Drawer
+          visible={!isCollapsed}
+          onClose={handleCollapseSidebar}
+          placement="left"
+          className={styles.drawer}
+        >
+          <Sidebar isMobile />
+        </Drawer>
+      )}
+      {screens.md && <Sidebar collapsed={isCollapsed} />}
       <Layout className={styles.container}>
         <Header className={styles.header}>
           <Col>

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Tabs, Card, Col, Row, Tag, Table, Descriptions, Grid } from 'antd'
+import { Tabs, Card, Col, Row, Tag, Table, Descriptions } from 'antd'
 import { Line } from '@ant-design/charts'
 import moment from 'moment'
 import { useQuery } from '@apollo/react-hooks'
@@ -10,7 +10,6 @@ import { UserInfoContext } from '../../routes'
 import WeekPicker from '../../components/WeekPicker'
 
 const { TabPane } = Tabs
-const { useBreakpoint } = Grid
 
 const columns = [
   createCol({ key: 'govNumber' }),
@@ -21,8 +20,6 @@ const columns = [
 ]
 
 const Home = () => {
-  const screens = useBreakpoint()
-  console.log('screens> ', screens)
   const { id } = useContext(UserInfoContext)
   const [date, setDate] = useState(() => moment().subtract(7, 'days'))
   const { data: carsDataWithDate = {}, loading, client, error } = useQuery(GET_REPORT_BY_INVESTOR, {

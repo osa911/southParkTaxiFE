@@ -42,3 +42,20 @@
   text-align: center;
   padding: 10px 50px;
 }
+
+.drawer {
+  height: 100vh;
+  padding: 0;
+
+  :global {
+    .ant-drawer-close {
+      display: none;
+    }
+    .ant-drawer-body {
+      padding: 0;
+    }
+    .ant-layout-sider-children {
+      height: 100vh;
+    }
+  }
+}

@@ -11,12 +11,29 @@
 }
 
 .container {
-  margin-left: $sidebar-width;
+  //margin-left: $sidebar-width;
 }
 
 .header {
   background: #ffffff;
   box-shadow: #969696 0 0 10px;
+  padding: 0 15px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+  &:hover {
+    color: #1DA57A;
+  }
+}
+
+.left {
   text-align: end;
 }
 

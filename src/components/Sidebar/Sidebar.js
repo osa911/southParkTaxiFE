@@ -9,7 +9,7 @@ import { ADMIN_ROLE } from '../../constants'
 const { Sider } = Layout
 const { Item: MenuItem, SubMenu } = Menu
 
-const Sidebar = () => {
+const Sidebar = ({ collapsed }) => {
   const { pathname = '' } = useLocation()
   const { role: userRole } = useContext(UserInfoContext)
   const authorizedMenuItems = useMemo(
@@ -54,7 +54,7 @@ const Sidebar = () => {
     )
 
   return (
-    <Sider className={styles.sidebar}>
+    <Sider className={styles.sidebar} trigger={null} collapsible collapsed={collapsed}>
       <div className={styles.logo} />
       <Menu
         theme="dark"

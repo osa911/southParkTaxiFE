@@ -3,6 +3,7 @@ import { Button, Layout, Col, Drawer, Grid } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import { useApolloClient } from '@apollo/react-hooks'
 import { useHistory } from 'react-router-dom'
+import cn from 'classnames'
 import styles from './Main.module.scss'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import { UserInfoContext } from '../../routes'
@@ -30,10 +31,11 @@ const MainLayout = ({ children }) => {
     push('/signIn')
   }
 
-  const handleCollapseSidebar = useCallback(() => {
+  const handleCollapseSidebar = useCallback((status) => {
     setIsCollapsed((s) => {
-      localStorage.setItem('sidebar', JSON.stringify(!s))
-      return !s
+      const bool = typeof status === 'boolean' ? status : !s
+      localStorage.setItem('sidebar', JSON.stringify(bool))
+      return bool
     })
   }, [])
 
@@ -46,7 +48,7 @@ const MainLayout = ({ children }) => {
           placement="left"
           className={styles.drawer}
         >
-          <Sidebar isMobile />
+          <Sidebar isMobile hideDrawer={handleCollapseSidebar}/>
         </Drawer>
       )}
       {screens.md && <Sidebar collapsed={isCollapsed} />}
@@ -66,7 +68,7 @@ const MainLayout = ({ children }) => {
           </Col>
         </Header>
         {children}
-        <Footer className={styles.footer}>SouthPark ©2020 Created by Yevhenii Osadchyi</Footer>
+        <Footer className={cn(styles.footer, { [styles.fs12]: !screens.md })}>SouthPark ©2020 Created by Yevhenii Osadchyi</Footer>
       </Layout>
     </Layout>
   )

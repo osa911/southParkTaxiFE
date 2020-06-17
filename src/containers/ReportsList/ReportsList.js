@@ -28,13 +28,14 @@ const ReportsList = () => {
 
   return (
     <Table
-      dataSource={reportsList}
-      pagination={false}
+      bordered
       rowKey="id"
       size="small"
-      bordered
       loading={loading}
       columns={columns}
+      pagination={false}
+      scroll={{ x: 'auto' }}
+      dataSource={reportsList}
     />
   )
 }

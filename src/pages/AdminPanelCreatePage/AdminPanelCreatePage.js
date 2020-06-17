@@ -8,12 +8,12 @@ import AddNewCar from '../../containers/AddNewCar'
 const AdminPanelCreatePage = () => {
   return (
     <Row>
-      <Col span={8}>
+      <Col lg={8} md={12} sm={24} span={24}>
         <Card className={styles.card}>
           <AddNewUser />
         </Card>
       </Col>
-      <Col span={10}>
+      <Col lg={10} md={12} sm={24} span={24}>
         <Card className={styles.card}>
           <AddNewCar />
         </Card>

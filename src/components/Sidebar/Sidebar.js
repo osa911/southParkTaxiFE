@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react'
+import React, { useCallback, useContext, useMemo } from "react";
 import { Link, useLocation } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 import styles from './Sidebar.module.scss'
@@ -9,7 +9,7 @@ import { ADMIN_ROLE } from '../../constants'
 const { Sider } = Layout
 const { Item: MenuItem, SubMenu } = Menu
 
-const Sidebar = ({ collapsed = false, isMobile }) => {
+const Sidebar = ({ collapsed = false, isMobile, hideDrawer }) => {
   const { pathname = '' } = useLocation()
   const { role: userRole } = useContext(UserInfoContext)
   const authorizedMenuItems = useMemo(
@@ -20,6 +20,13 @@ const Sidebar = ({ collapsed = false, isMobile }) => {
       }),
     [userRole]
   )
+
+  const handleMenuClick = useCallback(() => {
+    if (isMobile) {
+      hideDrawer(true)
+    }
+  }, [hideDrawer, isMobile])
+
   const homeMenuItem = useMemo(() => authorizedMenuItems[0] || {}, [authorizedMenuItems])
 
   const selectedMenuItemKey = useMemo(() => {
@@ -49,7 +56,7 @@ const Sidebar = ({ collapsed = false, isMobile }) => {
       </SubMenu>
     ) : (
       <MenuItem key={menuItem.key} icon={menuItem.icon}>
-        <Link to={menuItem.linkTo}>{menuItem.name}</Link>
+        <Link to={menuItem.linkTo} onClick={handleMenuClick}>{menuItem.name}</Link>
       </MenuItem>
     )
 
@@ -72,7 +79,7 @@ const Sidebar = ({ collapsed = false, isMobile }) => {
       <Menu
         theme="dark"
         mode="inline"
-        defaultOpenKeys={['adminPanel']}
+        openKeys={collapsed ? [] : ['adminPanel']}
         selectedKeys={selectedMenuItemKey}
       >
         {authorizedMenuItems.map(createMenuItem)}

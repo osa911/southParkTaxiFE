@@ -13,6 +13,7 @@ const columns = [
   createCol({ key: 'role' }),
   createCol({
     key: 'cars',
+    width: 300,
     render: (cars) => {
       if (!cars.length) return null
       return (
@@ -33,13 +34,14 @@ const UsersList = () => {
 
   return (
     <Table
-      dataSource={userList}
-      pagination={false}
+      bordered
       rowKey="id"
       size="small"
-      bordered
       loading={loading}
       columns={columns}
+      pagination={false}
+      dataSource={userList}
+      scroll={{ x: 1000 }}
     />
   )
 }

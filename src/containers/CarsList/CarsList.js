@@ -13,6 +13,7 @@ const columns = [
   createCol({ title: 'Owner', key: 'user', dataIndex: ['user', 'name'] }),
   createCol({
     key: 'reports',
+    width: 600,
     render: (c = []) => (
       <ul>
         {c.map(({ id, netProfit, netProfitUSD, title }) => (
@@ -32,13 +33,14 @@ const CarsList = () => {
 
   return (
     <Table
-      dataSource={carList}
-      pagination={false}
+      bordered
       rowKey="id"
       size="small"
-      bordered
       loading={loading}
       columns={columns}
+      pagination={false}
+      dataSource={carList}
+      scroll={{ x: 1000 }}
     />
   )
 }

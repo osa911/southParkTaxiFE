@@ -130,23 +130,24 @@ const Home = () => {
 
   return (
     <Row gutter={[8, 8]}>
-      <Col span={12}>
+      <Col span={24} xl={12}>
         <Card>
           <Tabs tabBarExtraContent={<WeekPicker value={date} onChange={setDate} />}>
             <TabPane tab="Report by cars" key="1">
               <Table
-                dataSource={reports}
                 rowKey="id"
-                pagination={false}
                 loading={loading}
                 columns={columns}
+                pagination={false}
+                dataSource={reports}
+                scroll={{ x: 'auto' }}
                 expandable={{ expandedRowRender }}
               />
             </TabPane>
           </Tabs>
         </Card>
       </Col>
-      <Col span={12}>
+      <Col span={24} xl={12}>
         <Card>
           <Line {...config} />
         </Card>

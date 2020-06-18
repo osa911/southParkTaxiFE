@@ -79,7 +79,7 @@ const Sidebar = ({ collapsed = false, isMobile, hideDrawer }) => {
       <Menu
         theme="dark"
         mode="inline"
-        openKeys={collapsed ? [] : ['adminPanel']}
+        defaultOpenKeys={collapsed ? [] : ['adminPanel']}
         selectedKeys={selectedMenuItemKey}
       >
         {authorizedMenuItems.map(createMenuItem)}

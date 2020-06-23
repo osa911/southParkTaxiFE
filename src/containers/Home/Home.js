@@ -12,11 +12,11 @@ import WeekPicker from '../../components/WeekPicker'
 const { TabPane } = Tabs
 
 const columns = [
-  createCol({ key: 'govNumber' }),
-  createCol({ key: 'totalIncome' }),
-  createCol({ key: 'totalFee' }),
-  createCol({ key: 'netProfit' }),
-  createCol({ key: 'netProfitUSD' }),
+  createCol({ title: 'Гос. номер', key: 'govNumber' }),
+  createCol({ title: 'Всего выручка', key: 'totalIncome' }),
+  createCol({ title: 'Всего расходы', key: 'totalFee' }),
+  createCol({ title: 'Итого прибыль', key: 'netProfit' }),
+  createCol({ title: 'Итого прибыль, USD', key: 'netProfitUSD' }),
 ]
 
 const Home = () => {

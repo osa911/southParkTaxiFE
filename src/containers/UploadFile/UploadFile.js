@@ -75,7 +75,7 @@ const UploadFile = () => {
             <Alert
               key={id}
               style={{ marginTop: 5 }}
-              message={`${title} и автомобиль с гос. номером "${govNumber}" успешно загружены.`}
+              message={`${title} по машине с гос. номером "${govNumber}" успешно загружены.`}
             />
           ))}
         </>

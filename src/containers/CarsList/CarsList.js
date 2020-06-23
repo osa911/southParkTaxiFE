@@ -19,7 +19,7 @@ const columns = [
       <ul>
         {c.map(({ id, netProfit, netProfitUSD, title }) => (
           <li key={id}>
-            Title: {title} netProfit: {netProfit}, netProfitUSD: {netProfitUSD}
+            {title} <b>Прибыль:</b> {netProfit}грн. или ${netProfitUSD}.
           </li>
         ))}
       </ul>

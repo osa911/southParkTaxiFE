@@ -6,19 +6,19 @@ import { createCol } from '../../utils/TableHelpers'
 import { useErrorNotification } from '../../hooks/useErrorNotification'
 
 const columns = [
-  createCol({ title: 'Government Number', key: 'govNumber' }),
-  createCol({ key: 'income' }),
-  createCol({ title: 'Income by Branding', key: 'incomeBranding' }),
-  createCol({ title: 'Total Income', key: 'totalIncome' }),
-  createCol({ title: 'Management Fee', key: 'managementFee' }),
-  createCol({ title: 'Management Fee %%', key: 'managementFeePercent' }),
-  createCol({ key: 'mileage' }),
-  createCol({ title: 'Service Fee', key: 'serviceFee' }),
-  createCol({ title: 'Tracker Fee', key: 'trackerFee' }),
-  createCol({ key: 'week' }),
-  createCol({ key: 'year' }),
-  createCol({ title: 'Net Profit', key: 'netProfit' }),
-  createCol({ title: 'Net Profit, usd', key: 'netProfitUSD' }),
+  createCol({ title: 'Гос. Номер', key: 'govNumber' }),
+  createCol({ title: 'Выручка', key: 'income' }),
+  createCol({ title: 'Бонус за брендирование', key: 'incomeBranding' }),
+  createCol({ title: 'Всего доход', key: 'totalIncome' }),
+  createCol({ title: 'Комиссия за управление', key: 'managementFee' }),
+  createCol({ title: 'Процент за управление', key: 'managementFeePercent' }),
+  createCol({ title: 'Пробег авто', key: 'mileage' }),
+  createCol({ title: 'ТО', key: 'serviceFee' }),
+  createCol({ title: 'Расходы на трекер', key: 'trackerFee' }),
+  createCol({ title: '# недели', key: 'week' }),
+  createCol({ title: 'Год', key: 'year' }),
+  createCol({ title: 'Прибыль', key: 'netProfit' }),
+  createCol({ title: 'Прибыль, USD', key: 'netProfitUSD' }),
 ]
 
 const ReportsList = () => {

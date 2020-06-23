@@ -51,14 +51,14 @@ const SignIn = () => {
   }
 
   return (
-    <Spin tip="Loading" spinning={loading || loadingUserInfo}>
+    <Spin tip="Идет загрузка..." spinning={loading || loadingUserInfo}>
       {called && error && (
         <div className={styles.error}>
-          <Alert message="Error" description={error.message} type="error" closable />
+          <Alert message="Ошибка" description={error.message} type="error" closable />
         </div>
       )}
       <Form {...layout} form={form} className={styles.container} onFinish={onFinish}>
-        <Divider>South Park Taxi Login Page</Divider>
+        <Divider>South Park Taxi Страница входа</Divider>
         <Form.Item
           name="email"
           label="E-mail"
@@ -66,12 +66,12 @@ const SignIn = () => {
         >
           <Input />
         </Form.Item>
-        <Form.Item name="password" label="Password" rules={[requiredField('Password')]}>
+        <Form.Item name="password" label="Пароль" rules={[requiredField('Password')]}>
           <Input.Password />
         </Form.Item>
         <Form.Item {...tailLayout}>
           <Button type="primary" htmlType="submit">
-            Login
+            Войти
           </Button>
         </Form.Item>
       </Form>

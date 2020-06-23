@@ -5,9 +5,9 @@ import styles from './Page404.module.scss'
 const Page404 = () => {
   return (
     <div className={styles.center}>
-      <div>Page404</div>
+      <div>Страница не найдена.</div>
       <div>
-        <Link to="/">Go home page</Link>
+        <Link to="/">Вернуться на главную</Link>
       </div>
     </div>
   )

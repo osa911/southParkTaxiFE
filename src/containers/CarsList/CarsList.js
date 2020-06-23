@@ -6,13 +6,14 @@ import { createCol } from '../../utils/TableHelpers'
 import { useErrorNotification } from '../../hooks/useErrorNotification'
 
 const columns = [
-  createCol({ key: 'title' }),
-  createCol({ title: 'Government Number', key: 'govNumber' }),
-  createCol({ key: 'price' }),
-  createCol({ key: 'mileage' }),
-  createCol({ title: 'Owner', key: 'user', dataIndex: ['user', 'name'] }),
+  createCol({ title: 'Надпись', key: 'title' }),
+  createCol({ title: 'Гос. номер', key: 'govNumber' }),
+  createCol({ title: 'Цена', key: 'price' }),
+  createCol({ title: 'Пробег', key: 'mileage' }),
+  createCol({ title: 'Собственник', key: 'user', dataIndex: ['user', 'name'] }),
   createCol({
     key: 'reports',
+    title: 'Отчеты',
     width: 600,
     render: (c = []) => (
       <ul>

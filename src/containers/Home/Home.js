@@ -59,7 +59,7 @@ const Home = () => {
           layout="vertical"
           bordered
           size="small"
-          title={`More details by car ${govNumber}`}
+          title={`Больше информации по автомобилю ${govNumber}`}
           // column={{ xxl: 4, xl: 4, lg: 4, md: 4, sm: 2, xs: 1 }}
         >
           <Descriptions.Item label="Доход от такси">
@@ -103,7 +103,7 @@ const Home = () => {
   const config = {
     title: {
       visible: true,
-      text: 'Chart of income by cars for all time',
+      text: 'График доходов по автомобилям за все время',
     },
     padding: 'auto',
     forceFit: true,
@@ -133,7 +133,7 @@ const Home = () => {
       <Col span={24} xl={12}>
         <Card>
           <Tabs tabBarExtraContent={<WeekPicker value={date} onChange={setDate} />}>
-            <TabPane tab="Report by cars" key="1">
+            <TabPane tab="Отчет по машинам" key="1">
               <Table
                 rowKey="id"
                 loading={loading}

@@ -63,7 +63,7 @@ const MainLayout = ({ children }) => {
           <Col className={styles.left}>
             {email}
             <Button type="link" onClick={handleLogOut}>
-              Logout
+              Выйти
             </Button>
           </Col>
         </Header>

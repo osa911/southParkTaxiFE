@@ -19,7 +19,7 @@ const UploadFile = () => {
   const [date, setDate] = useState(() => moment().subtract(7, 'days'))
 
   const handleUpload = () => {
-    if (!date) return message.error('Week for report is required')
+    if (!date) return message.error('Выберите номер недели для отчета.')
     const formData = new FormData()
     formData.append('file', fileList[0])
     upload({ variables: { date, file: fileList[0] } }).then(() => {
@@ -45,15 +45,14 @@ const UploadFile = () => {
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
-            <p className="ant-upload-text">Click or drag file to this area to upload</p>
+            <p className="ant-upload-text">Нажмите или перетащите файл в эту область, чтобы загрузить</p>
             <p className="ant-upload-hint">
-              Support for a single or bulk upload. Strictly prohibit from uploading company data or
-              other band files
+              Поддерживается загрузка одного файла отчета .xlsx за выбранный период.
             </p>
           </Upload.Dragger>
         </Col>
         <Col offset={screens.md && 1} span={screens.md ? 9 : 12} lg={7} xl={6} xxl={4}>
-          <Form.Item label="Select the week number of report">
+          <Form.Item label="Выберите номер недели отчета">
             <WeekPicker value={date} onChange={setDate} />
           </Form.Item>
           <Row>
@@ -64,7 +63,7 @@ const UploadFile = () => {
               loading={loading}
               style={{ marginTop: 16 }}
             >
-              {loading ? 'Uploading...' : 'Start Upload'}
+              {loading ? 'Идет загрузка файла...' : 'Загрузить'}
             </Button>
           </Row>
         </Col>
@@ -76,7 +75,7 @@ const UploadFile = () => {
             <Alert
               key={id}
               style={{ marginTop: 5 }}
-              message={`${title} and car with government number "${govNumber}" successfully saved.`}
+              message={`${title} и автомобиль с гос. номером "${govNumber}" успешно загружены.`}
             />
           ))}
         </>

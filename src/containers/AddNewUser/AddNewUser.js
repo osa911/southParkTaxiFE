@@ -13,14 +13,14 @@ const AddNewUser = () => {
   useEffect(() => {
     if (error?.message) {
       notification.error({
-        message: 'Error!',
+        message: 'Ошибка!',
         description: error.message,
       })
     }
     if (data?.createUser?.id) {
       notification.success({
-        message: 'Successes!',
-        description: 'User Saved',
+        message: 'Успешно!',
+        description: 'Пользователь добавлен.',
       })
       client.clearStore()
     }
@@ -38,25 +38,25 @@ const AddNewUser = () => {
       <CustomForm
         onFinish={handleSubmit}
         needToResetForm={called && !!data?.createUser?.id}
-        title="New User"
+        title="Добавить нового пользователя"
       >
         {() => (
           <>
             <Form.Item
               name="name"
-              label="Client name"
+              label="Имя"
               hasFeedback
-              rules={[requiredField('Client name')]}
+              rules={[requiredField('Имя')]}
             >
-              <Input placeholder="Type user name" />
+              <Input placeholder="Введите Имя" />
             </Form.Item>
             <Form.Item
               name="password"
-              label="Password"
+              label="Пароль"
               hasFeedback
-              rules={[requiredField('Password')]}
+              rules={[requiredField('Пароль')]}
             >
-              <Input.Password placeholder="Type user password" />
+              <Input.Password placeholder="Введите пароль" />
             </Form.Item>
             <Form.Item
               name="email"
@@ -64,16 +64,16 @@ const AddNewUser = () => {
               hasFeedback
               rules={[{ ...requiredField('E-mail'), type: 'email' }]}
             >
-              <Input placeholder="Type user e-mail" />
+              <Input placeholder="Введите e-mail" />
             </Form.Item>
-            <Form.Item name="role" label="Role" hasFeedback rules={[requiredField('Role')]}>
-              <Select placeholder="Select a role">
-                <Select.Option value={INVESTOR_ROLE}>Investor</Select.Option>
-                <Select.Option value={ADMIN_ROLE}>Administrator</Select.Option>
+            <Form.Item name="role" label="Роль" hasFeedback rules={[requiredField('Role')]}>
+              <Select placeholder="Выберите роль">
+                <Select.Option value={INVESTOR_ROLE}>Инвестор</Select.Option>
+                <Select.Option value={ADMIN_ROLE}>Администратор</Select.Option>
               </Select>
             </Form.Item>
-            <Form.Item name="phone" label="Client phone" hasFeedback>
-              <Input placeholder="Type user phone" />
+            <Form.Item name="phone" label="Телефон" hasFeedback>
+              <Input placeholder="Введите телефон" />
             </Form.Item>
           </>
         )}

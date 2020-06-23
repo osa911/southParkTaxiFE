@@ -34,14 +34,27 @@ export default function Routes() {
     <Spin spinning={loading}>
       <UserInfoContext.Provider value={{ ...userInfo }}>
         <Switch>
-          <RouteWithLayout exact layout={StandardClean} component={Home} path="/" />
-          <RouteWithLayout exact layout={StandardMini} component={Tracker} path="/tracker" />
+          <RouteWithLayout
+            exact
+            layout={StandardClean}
+            component={Home}
+            path="/"
+            title="Главная страница | SouthPark"
+          />
+          <RouteWithLayout
+            exact
+            layout={StandardMini}
+            component={Tracker}
+            path="/tracker"
+            title="Трекер | SouthPark"
+          />
           <RouteWithLayout
             exact
             layout={Standard}
             component={AdminPanelCreatePage}
             isAdmin
             path="/create"
+            title="Формы создания | SouthPark"
           />
           <RouteWithLayout
             exact
@@ -49,22 +62,46 @@ export default function Routes() {
             component={UsersList}
             isAdmin
             path="/user-list"
+            title="Список клиентов | SouthPark"
           />
-          <RouteWithLayout exact layout={Standard} component={CarsList} isAdmin path="/car-list" />
+          <RouteWithLayout
+            exact
+            layout={Standard}
+            component={CarsList}
+            isAdmin
+            path="/car-list"
+            title="Список автомобилей | SouthPark"
+          />
           <RouteWithLayout
             exact
             layout={Standard}
             component={ReportsList}
             isAdmin
             path="/reports-list"
+            title="Список отчетов | SouthPark"
           />
-          <RouteWithLayout exact layout={Standard} component={UploadFile} isAdmin path="/upload" />
-          <RouteWithLayout exact layout={Minimal} component={SignIn} path="/signIn" notPrivate />
+          <RouteWithLayout
+            exact
+            layout={Standard}
+            component={UploadFile}
+            isAdmin
+            path="/upload"
+            title="Загрузка файла отчета excel | SouthPark"
+          />
+          <RouteWithLayout
+            exact
+            layout={Minimal}
+            component={SignIn}
+            path="/signIn"
+            notPrivate
+            title="Вход | SouthPark"
+          />
           <RouteWithLayout
             exact
             layout={Minimal}
             component={Page404}
             path="/page-not-found"
+            title="Страница не найдена | SouthPark"
             notPrivate
           />
           <Redirect to="/page-not-found" />

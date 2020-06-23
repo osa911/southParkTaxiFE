@@ -7,13 +7,14 @@ import styles from './UsersList.module.scss'
 import { useErrorNotification } from '../../hooks/useErrorNotification'
 
 const columns = [
-  createCol({ key: 'name' }),
-  createCol({ key: 'email' }),
-  createCol({ key: 'phone' }),
-  createCol({ key: 'role' }),
+  createCol({ key: 'name', title: 'Имя' }),
+  createCol({ key: 'email', title: 'E-mail' }),
+  createCol({ key: 'phone', title: 'Телефон' }),
+  createCol({ key: 'role', title: 'Роль' }),
   createCol({
     key: 'cars',
     width: 300,
+    title: 'Список автомобилей',
     render: (cars) => {
       if (!cars.length) return null
       return (

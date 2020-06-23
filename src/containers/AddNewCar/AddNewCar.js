@@ -16,8 +16,8 @@ const AddNewCar = () => {
   useEffect(() => {
     if (data?.createCar?.id) {
       notification.success({
-        message: 'Successes!',
-        description: 'Car Saved',
+        message: 'Успешно!',
+        description: 'Машина добавлена.',
       })
       client.clearStore()
     }
@@ -35,23 +35,23 @@ const AddNewCar = () => {
       <CustomForm
         onFinish={handleSubmit}
         needToResetForm={called && !!data?.createCar?.id}
-        title="New Car"
+        title="Добавить новый автомобиль"
       >
         {() => (
           <>
-            <Form.Item name="title" label="Title" hasFeedback rules={[requiredField('Title')]}>
-              <Input placeholder="Type car title" />
+            <Form.Item name="title" label="Надпись" hasFeedback rules={[requiredField('Title')]}>
+              <Input placeholder="Введите надпись" />
             </Form.Item>
             <Form.Item
               name="govNumber"
-              label="Government Number"
+              label="Гос. Номер"
               hasFeedback
-              rules={[requiredField('Government Number')]}
+              rules={[requiredField('Гос. Номер')]}
             >
-              <Input placeholder="Type car government number" />
+              <Input placeholder="Введите Гос. Номер" />
             </Form.Item>
-            <Form.Item name="ownerId" label="Owner" hasFeedback rules={[requiredField('Owner')]}>
-              <Select loading={isUsersLoading} placeholder="Select an owner">
+            <Form.Item name="ownerId" label="Собственник" hasFeedback rules={[requiredField('Собственник')]}>
+              <Select loading={isUsersLoading} placeholder="Выберите собственника">
                 {userList.map(({ id, name, email }) => (
                   <Select.Option key={id} value={id}>
                     {name}: {email}
@@ -59,16 +59,16 @@ const AddNewCar = () => {
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item name="price" label="Price" hasFeedback rules={[{ type: 'number', min: 0 }]}>
-              <InputNumber className={styles.inputNumber} placeholder="Type car price" />
+            <Form.Item name="price" label="Цена" hasFeedback rules={[{ type: 'number', min: 0 }]}>
+              <InputNumber className={styles.inputNumber} placeholder="Введите цену автомобиля" />
             </Form.Item>
             <Form.Item
               name="mileage"
-              label="Mileage"
+              label="Пробег"
               hasFeedback
               rules={[{ type: 'number', min: 0 }]}
             >
-              <InputNumber className={styles.inputNumber} placeholder="Type car mileage" />
+              <InputNumber className={styles.inputNumber} placeholder="Введите пробег автомобиля" />
             </Form.Item>
           </>
         )}

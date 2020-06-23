@@ -52,10 +52,10 @@ const CustomForm = ({
         <FormItems isFormDisabled={isFormDisabled} />
         <div className={cn(styles.buttons, { [styles.invisible]: isFormDisabled })}>
           <Button className={styles.button} danger onClick={handleCancelClick}>
-            Reset
+            Сбросить
           </Button>
           <Button className={styles.button} type="primary" htmlType="submit">
-            Save
+            Сохранить
           </Button>
         </div>
       </Form>

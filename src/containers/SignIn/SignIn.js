@@ -52,9 +52,14 @@ const SignIn = () => {
 
   return (
     <Spin tip="Идет загрузка..." spinning={loading || loadingUserInfo}>
-      {called && error && (
+      {called && error?.graphQLErrors && (
         <div className={styles.error}>
-          <Alert message="Ошибка" description={error.message} type="error" closable />
+          <Alert
+            message="Ошибка"
+            description={error?.graphQLErrors[0]?.message}
+            type="error"
+            closable
+          />
         </div>
       )}
       <Form {...layout} form={form} className={styles.container} onFinish={onFinish}>

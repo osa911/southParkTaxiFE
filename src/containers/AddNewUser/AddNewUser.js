@@ -11,10 +11,10 @@ const AddNewUser = () => {
   const [createNewUser, { data = {}, loading, called, client, error }] = useMutation(CREATE_USER)
 
   useEffect(() => {
-    if (error?.message) {
+    if (error?.graphQLErrors) {
       notification.error({
         message: 'Ошибка!',
-        description: error.message,
+        description: error.graphQLErrors[0]?.message,
       })
     }
     if (data?.createUser?.id) {

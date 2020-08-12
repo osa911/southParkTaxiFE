@@ -11,6 +11,7 @@ export const CREATE_USER = gql`
     createUser(name: $name, password: $password, email: $email, phone: $phone, role: $role) {
       id
       name
+      email
     }
   }
 `
@@ -39,6 +40,24 @@ export const CREATE_CAR = gql`
 export const LOGIN_USER = gql`
   mutation loginUser($password: String!, $email: String!) {
     loginUser(password: $password, email: $email)
+  }
+`
+
+export const DELETE_REPORT = gql`
+  mutation deleteReport($id: String!) {
+    deleteReport(id: $id)
+  }
+`
+
+export const DELETE_CAR = gql`
+  mutation deleteCar($id: String!) {
+    deleteCar(id: $id)
+  }
+`
+
+export const DELETE_USER = gql`
+  mutation deleteUser($id: String!) {
+    deleteUser(id: $id)
   }
 `
 

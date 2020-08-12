@@ -50,8 +50,21 @@ const AddNewCar = () => {
             >
               <Input placeholder="Введите Гос. Номер" />
             </Form.Item>
-            <Form.Item name="ownerId" label="Собственник" hasFeedback rules={[requiredField('Собственник')]}>
-              <Select loading={isUsersLoading} placeholder="Выберите собственника">
+            <Form.Item
+              name="ownerId"
+              label="Собственник"
+              hasFeedback
+              rules={[requiredField('Собственник')]}
+            >
+              <Select
+                showSearch
+                optionFilterProp="children"
+                loading={isUsersLoading}
+                placeholder="Выберите собственника"
+                filterOption={(input, option) =>
+                  option.children.join().toLowerCase().indexOf(input.toLowerCase()) >= 0
+                }
+              >
                 {userList.map(({ id, name, email }) => (
                   <Select.Option key={id} value={id}>
                     {name}: {email}

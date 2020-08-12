@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks'
 
 import CustomForm from '../../components/EditableForm'
 import { requiredField } from '../../utils/FormHelpers'
-import { CREATE_USER } from '../../gql'
+import { CREATE_USER, GET_USERS_LIST_FOR_SELECT } from '../../gql'
 import { ADMIN_ROLE, INVESTOR_ROLE } from '../../constants'
 
 const AddNewUser = () => {
@@ -28,7 +28,17 @@ const AddNewUser = () => {
 
   const handleSubmit = useCallback(
     async (data) => {
-      await createNewUser({ variables: data })
+      await createNewUser({
+        variables: data,
+        optimisticResponse: true,
+        update(store, { data }) {
+          if (data && data.createUser) {
+            const { getUsersList } = store.readQuery({ query: GET_USERS_LIST_FOR_SELECT })
+            const newList = [...getUsersList, data.createUser]
+            store.writeQuery({ query: GET_USERS_LIST_FOR_SELECT, data: { getUsersList: newList } })
+          }
+        },
+      })
     },
     [createNewUser]
   )
@@ -42,20 +52,10 @@ const AddNewUser = () => {
       >
         {() => (
           <>
-            <Form.Item
-              name="name"
-              label="Имя"
-              hasFeedback
-              rules={[requiredField('Имя')]}
-            >
+            <Form.Item name="name" label="Имя" hasFeedback rules={[requiredField('Имя')]}>
               <Input placeholder="Введите Имя" />
             </Form.Item>
-            <Form.Item
-              name="password"
-              label="Пароль"
-              hasFeedback
-              rules={[requiredField('Пароль')]}
-            >
+            <Form.Item name="password" label="Пароль" hasFeedback rules={[requiredField('Пароль')]}>
               <Input.Password placeholder="Введите пароль" />
             </Form.Item>
             <Form.Item

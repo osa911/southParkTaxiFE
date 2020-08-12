@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import moment from 'moment'
-import { Alert, Button, Col, Divider, Form, Grid, message, Row, Upload } from "antd";
+import { Alert, Button, Col, Divider, Form, Grid, message, Row, Upload } from 'antd'
 import { InboxOutlined } from '@ant-design/icons'
 import { useMutation } from '@apollo/react-hooks'
 import { UPLOAD_FILE_STREAM } from '../../gql'
@@ -45,7 +45,9 @@ const UploadFile = () => {
             <p className="ant-upload-drag-icon">
               <InboxOutlined />
             </p>
-            <p className="ant-upload-text">Нажмите или перетащите файл в эту область, чтобы загрузить</p>
+            <p className="ant-upload-text">
+              Нажмите или перетащите файл в эту область, чтобы загрузить
+            </p>
             <p className="ant-upload-hint">
               Поддерживается загрузка одного файла отчета .xlsx за выбранный период.
             </p>

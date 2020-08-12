@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from "react";
+import React, { useCallback, useContext, useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 import styles from './Sidebar.module.scss'
@@ -56,7 +56,9 @@ const Sidebar = ({ collapsed = false, isMobile, hideDrawer }) => {
       </SubMenu>
     ) : (
       <MenuItem key={menuItem.key} icon={menuItem.icon}>
-        <Link to={menuItem.linkTo} onClick={handleMenuClick}>{menuItem.name}</Link>
+        <Link to={menuItem.linkTo} onClick={handleMenuClick}>
+          {menuItem.name}
+        </Link>
       </MenuItem>
     )
 

@@ -4,13 +4,13 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import { Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import AppolloClient from './AppolloClient'
-import moment from 'moment';
-import 'moment/locale/ru';
-import ruRU from 'antd/es/locale/ru_RU';
+import moment from 'moment'
+import 'moment/locale/ru'
+import ruRU from 'antd/es/locale/ru_RU'
 import './styles/App.less'
 import Routes from './routes'
 
-moment.locale('ru');
+moment.locale('ru')
 const browserHistory = createBrowserHistory()
 
 function App() {

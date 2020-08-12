@@ -1,5 +1,6 @@
 import React, { useContext, useState, useCallback } from 'react'
-import { Button, Layout, Col, Drawer, Grid } from 'antd'
+import { Button, Layout, Col, Drawer, Grid, Divider } from 'antd'
+import moment from 'moment'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 import { useApolloClient } from '@apollo/react-hooks'
 import { useHistory } from 'react-router-dom'
@@ -48,7 +49,7 @@ const MainLayout = ({ children }) => {
           placement="left"
           className={styles.drawer}
         >
-          <Sidebar isMobile hideDrawer={handleCollapseSidebar}/>
+          <Sidebar isMobile hideDrawer={handleCollapseSidebar} />
         </Drawer>
       )}
       {screens.md && <Sidebar collapsed={isCollapsed} />}
@@ -60,15 +61,20 @@ const MainLayout = ({ children }) => {
               onClick: handleCollapseSidebar,
             })}
           </Col>
-          <Col className={styles.left}>
+          <Col className={styles.right}>
+            # недели: {moment().week()}
+            <Divider type="vertical" />
             {email}
+            <Divider type="vertical" />
             <Button type="link" onClick={handleLogOut}>
               Выйти
             </Button>
           </Col>
         </Header>
         {children}
-        <Footer className={cn(styles.footer, { [styles.fs12]: !screens.md })}>SouthPark ©2020 Created by Yevhenii Osadchyi</Footer>
+        <Footer className={cn(styles.footer, { [styles.fs12]: !screens.md })}>
+          SouthPark ©2020 Created by Yevhenii Osadchyi
+        </Footer>
       </Layout>
     </Layout>
   )
